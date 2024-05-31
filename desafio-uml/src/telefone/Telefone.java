@@ -1,4 +1,4 @@
-package phone;
+package telefone;
 
 public interface Telefone {
 	void ligar();

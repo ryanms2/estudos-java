@@ -1,8 +1,8 @@
 package smartphone;
 
 import navegadorInternet.NavegadorInternet;
-import phone.Telefone;
 import reprodutorMusica.ReprodutorMusica;
+import telefone.Telefone;
 
 public class Smartphone implements NavegadorInternet, ReprodutorMusica, Telefone {
 
