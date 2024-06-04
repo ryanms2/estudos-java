@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>exemplo-pacotes</name>
+	<name>lab-banco-digital-oo</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1717252309052</id>
+			<id>1717510677470</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
