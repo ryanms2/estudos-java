@@ -1,51 +1,66 @@
-import java.text.DecimalFormat;
 import java.util.Scanner;
 
+abstract class Cofre {
+    protected String tipo;
+    protected String metodoAbertura;
+
+    public Cofre(String tipo, String metodoAbertura) {
+        this.tipo = tipo;
+        this.metodoAbertura = metodoAbertura;
+    }
+
+    public void imprimirInformacoes() {
+        System.out.println("Tipo: " + this.tipo);
+        System.out.println("Metodo de abertura: " + this.metodoAbertura);
+    }
+}
+
+class CofreDigital extends Cofre {
+
+    private int senha;
+
+    public CofreDigital(int senha) {
+        super("Cofre Digital", "Senha");
+        this.senha = senha;
+    }
+
+     public boolean validarSenha (int confirmacaoSenha) {
+        return confirmacaoSenha == this.senha;
+    }
+}
+
+class CofreFisico extends Cofre {
+
+    public CofreFisico() {
+        super("Cofre Fisico", "Chave");
+    }
+
+}
+
 public class Desafio {
-
     public static void main(String[] args) {
-        // Lendo os dados de Entrada:
+        // Lê o tipo de cofre (primeira linha da entrada)
         Scanner scanner = new Scanner(System.in);
-        String titular = scanner.next();
-        int numeroConta = scanner.nextInt();
-        double saldo = scanner.nextDouble();
-        double taxaJuros = scanner.nextDouble();
+        String tipoCofre = scanner.nextLine();
 
-        ContaPoupanca contaPoupanca = new ContaPoupanca(numeroConta, titular, saldo, taxaJuros);
+        // TODO: Implemente a condição necessário para a verificação dos cofres seguros:
+        if (tipoCofre.equalsIgnoreCase("digital")) {
+            int senha = scanner.nextInt();
+            int validaSenha = scanner.nextInt();
+            CofreDigital cofre = new CofreDigital(senha);
+            cofre.imprimirInformacoes();
+            if (cofre.validarSenha(validaSenha)){
+                System.out.println("Cofre aberto!");
+            }else {
+                System.out.println("Senha incorreta!");
+            }
 
-        System.out.println("Conta Poupanca:");
-        contaPoupanca.exibirInformacoes();
-    }
-}
+        }
 
-class ContaBancaria {
-    protected int numero;
-    protected String titular;
-    protected double saldo;
+        if (tipoCofre.equalsIgnoreCase("fisico")) {
+            Cofre cofre = new CofreFisico();
+            cofre.imprimirInformacoes();
+        }
 
-    public ContaBancaria(int numero, String titular, double saldo) {
-        this.numero = numero;
-        this.titular = titular;
-        this.saldo = saldo;
-    }
-
-    public void exibirInformacoes() {
-        DecimalFormat decimalFormat = new DecimalFormat("#.0");
-        System.out.println(titular);
-        System.out.println(numero);
-        System.out.println("Saldo: R$ " + decimalFormat.format(saldo));
-    }
-}
-
-class ContaPoupanca extends ContaBancaria {
-    private double taxaJuros;
-
-    public ContaPoupanca(int numero, String titular, double saldo, double taxaJuros) {
-        //TODO: Implementar adequadamente esta sobrecarga de construtores.
-    }
-
-    public void exibirInformacoes() {
-        super.exibirInformacoes();
-        //TODO: Complementar as informações com a taxa de juros.
     }
 }
